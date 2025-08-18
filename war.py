@@ -90,7 +90,7 @@ def deal_cards():
         global player_image
         player_image = resize_cards(f'images/cards/{player_card}.png')
         player_label.config(image=player_image)
-        #player_label.config(text=card)
+        player_label.config(text=card)
 
         # put number of cards remaining into title bar
         root.title(f'War - {len(deck)} Cards Left')
@@ -127,7 +127,7 @@ def score(dealer_card, player_card):
 
     root.title(f'War - {len(deck)} Cards Left | Dealer: {dscore.count("x")} Player: {pscore.count("x")}')
 
-my_frame = Frame(root, bg="green")
+my_frame = Frame(root, bg="black")
 my_frame.pack(pady=20)
 
 # Create frames for cards
@@ -145,7 +145,7 @@ player_label = Label(player_frame, text='')
 player_label.pack(pady=20)
 
 # Create Score Label
-score_label = Label(root, text="", font=("helvetica", 14), bg="green")
+score_label = Label(root, text="", font=("helvetica", 14), bg="grey")
 score_label.pack(pady=20)
 
 #Buttons
