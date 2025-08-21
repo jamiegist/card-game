@@ -59,13 +59,12 @@ def shuffle():
     player_image = resize_cards(f'images/cards/{player_card}.png')
     player_label.config(image=player_image)
 
-    # player_label.config(text=card)
-
     # put number of remaining cards in title bar
-    root.title(f'War - {len(deck)} Cards Left')
+    root.title(f'War | {len(deck)} Cards Left')
 
     # total score
-    score(dealer_card, player_card)
+    # score(dealer_card, player_card)
+    score_label.config(text="", bg="black")
 
 # Deal Cards
 def deal_cards():
@@ -79,7 +78,6 @@ def deal_cards():
         global dealer_image
         dealer_image = resize_cards(f'images/cards/{dealer_card}.png')
         dealer_label.config(image=dealer_image)
-        #dealer_label.config(text=card)
 
         # get Player Card
         player_card = random.choice(deck)
@@ -90,10 +88,9 @@ def deal_cards():
         global player_image
         player_image = resize_cards(f'images/cards/{player_card}.png')
         player_label.config(image=player_image)
-        player_label.config(text=card)
 
         # put number of cards remaining into title bar
-        root.title(f'War - {len(deck)} Cards Left')
+        root.title(f'War | {len(deck)} Cards Left')
 
         # get the score
         score(dealer_card, player_card)
@@ -101,13 +98,13 @@ def deal_cards():
     except:
         # Tie
         if dscore.count("x") == pscore.count("x"):
-            root.title(f'War - Game Over! Tie! {dscore.count("x")} to {pscore.count("x")}')
+            root.title(f'War | Game Over! Tie! {dscore.count("x")} to {pscore.count("x")}')
         # Dealer Wins
         elif dscore.count("x") > pscore.count("x"):
-            root.title(f'War - Game Over! Dealer Wins! {dscore.count("x")} to {pscore.count("x")}')
+            root.title(f'War | Game Over! Dealer Wins! {dscore.count("x")} to {pscore.count("x")}')
         # Player Wins
         else:
-            root.title(f'War - Game Over! Player Wins! {pscore.count("x")} to {dscore.count("x")}')
+            root.title(f'War | Game Over! Player Wins! {pscore.count("x")} to {dscore.count("x")}')
 
 def score(dealer_card, player_card):
     # Split card numbers
@@ -125,7 +122,7 @@ def score(dealer_card, player_card):
         score_label.config(text="Player Wins!")
         pscore.append("x")
 
-    root.title(f'War - {len(deck)} Cards Left | Dealer: {dscore.count("x")} Player: {pscore.count("x")}')
+    root.title(f'War | {len(deck)} Cards Left | Dealer: {dscore.count("x")} Player: {pscore.count("x")}')
 
 my_frame = Frame(root, bg="black")
 my_frame.pack(pady=20)
