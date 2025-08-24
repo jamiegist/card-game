@@ -63,7 +63,7 @@ def shuffle():
     root.title(f'War | {len(deck)} Cards Left')
 
     # total score
-    # score(dealer_card, player_card)
+    score(dealer_card, player_card)
     score_label.config(text="", bg="black")
 
 # Deal Cards
@@ -97,15 +97,16 @@ def deal_cards():
 
     except:
         # Tie
-        if dscore.count("x") == pscore.count("x"):
+        if pscore.count("x") == dscore.count("x"):
             root.title(f'War | Game Over! Tie! {dscore.count("x")} to {pscore.count("x")}')
         # Dealer Wins
         elif dscore.count("x") > pscore.count("x"):
             root.title(f'War | Game Over! Dealer Wins! {dscore.count("x")} to {pscore.count("x")}')
+            dscore.append("x")
         # Player Wins
         else:
             root.title(f'War | Game Over! Player Wins! {pscore.count("x")} to {dscore.count("x")}')
-
+            pscore.append("x")
 def score(dealer_card, player_card):
     # Split card numbers
     dealer_card = int(dealer_card.split("_", 1)[0])
@@ -114,9 +115,8 @@ def score(dealer_card, player_card):
     # compare card numbers
     if dealer_card == player_card:
         score_label.config(text="Tie! Play Again!")
-
     elif dealer_card > player_card:
-        score_label.config("Dealer Wins!")
+        score_label.config(text="Dealer Wins!")
         dscore.append("x")
     else:
         score_label.config(text="Player Wins!")
@@ -146,11 +146,11 @@ score_label = Label(root, text="", font=("helvetica", 14), bg="grey")
 score_label.pack(pady=20)
 
 #Buttons
-shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
-shuffle_button.pack(pady=20)
-
-card_button = Button(root, text="Draw Card", font=("Helvetica", 14), command=deal_cards)
+card_button = Button(root, text="Draw Card", font=("Helvetica", 20), command=deal_cards)
 card_button.pack(pady=20)
+
+shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 20), command=shuffle)
+shuffle_button.pack(pady=20)
 
 # Shuffle deck on start
 shuffle()
